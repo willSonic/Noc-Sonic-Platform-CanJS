@@ -1,0 +1,25 @@
+{
+  "name": "empbootstrap",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "redis" : "*",
+    "connect-redis" : "*",
+    "passport" : "*",
+    "passport-local" : "*",
+    "bcrypt" : "*",
+    "connect-mongo" : "*",
+    "moment" : "*",
+    "fileupload" : "*"
+  },
+  "repository": {
+	    "type": "git",
+	    "url": "git://github.com/domharrington/fileupload.git"
+	 },
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  }
+}
