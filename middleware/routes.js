@@ -68,8 +68,8 @@ module.exports = function(app){
   // app.post('/uploadSong', {type:"song"}, platform.handelUpload); 
    
   // app.post('/uploadBeat', {type:"beat"}, platform.handelUpload); 
-   
-   app.get('/platformschema', platform.getPlatform);
+   app.get('/platformschema',   platform.getPlatform);
+   app.get('/myDashboard', restrict, platform.userDashboard);
  /*  app.get('/logout', restrict, home.logout);
    app.get('/about', home.about);
    app.get('/about/tos', home.tos);

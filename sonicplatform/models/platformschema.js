@@ -14,11 +14,12 @@ steal('can', 'can/model', function( can ) {
 		   *
 		   */
          
-           findOne : function(params){
+           findOne : function(params, successFunc){
               return can.ajax({
                  url: '/platformschema',
                  type: 'get',
-                 dataType: 'json'});
+                 dataType: 'json',
+                 success:successFunc});
            }
             
         },  { 

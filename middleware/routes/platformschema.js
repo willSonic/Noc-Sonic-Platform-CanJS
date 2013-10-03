@@ -16,7 +16,7 @@ module.exports = {
     
     
     getPlatform : function(req, res) {
-         res.send( {"links":[{"label":"Home","key":"front","path":"/"},{"label":"Profile","key":"profile","path":"/profile"},{"label":"About","key":"about","path":"/about"}]});
+         res.send( {"links":[{"label":"Home","key":"front","path":"/"},{"label":"Sonic Dashboard","key":"userDashboard","path":"/myDashboard"},{"label":"About","key":"about","path":"/about"}]});
     },
 
    // app.post('/uploadBeat...)
@@ -27,7 +27,22 @@ module.exports = {
     // app.get('/login'...)
     login: function(req, res) {
         res.send(200, {user:req.user});
-    }
+    },
+    
+    userDashboard: function(req, res, next){
+        User.findOne({'_id':req.user._id}, function (err, user) {
+             if (err) { 
+            	  next(err);
+             }
+             res.send(200, {user:user, beats:{ beat:{
+            	                                     title:"YOu Got it Made",
+            	                                     genre:"Hip Hop",
+            	                                     genreStyle: "Southern Bounce"
+            	                                     }
+                                              } 
+                            });
+         });
+     }
 
  };
 

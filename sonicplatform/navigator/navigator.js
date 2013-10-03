@@ -36,15 +36,15 @@ steal('can',
 	
         init: function(element, options) {
              steal.dev.log("Calling Platformschema from this.element = "+this.element[0]);
-             var el = this;
-    		 this.options.schema = Platformschema.findOne({}, 
-    		                              function(data){
-    		                              var renderer = can.view('//sonicplatform/navigator/templates/navbar.mustache', {href:"#!/login", label:"Login"});
-    		                              document.getElementById('navigator').appendChild(renderer);
-    		                               });
+             this.instance = Platformschema.findOne({}, this.schemaResult);
     		                                              
-    	}
+    	},
     	
+	    schemaResult :function(dataModel, attemptState, resObject){
+	    	var jsonObj = JSON.parse(resObject.responseText);
+            var renderer = can.view('//sonicplatform/navigator/templates/navbar.mustache', {href:"#!/login", label:"Login", navSchema:jsonObj.links});
+            document.getElementById('navigator').appendChild(renderer);
+	    }
     	
     	
     	

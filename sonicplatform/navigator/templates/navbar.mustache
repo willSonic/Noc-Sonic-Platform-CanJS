@@ -17,15 +17,11 @@
 			</div>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active">
-						<a href="/">Home</a>
-					</li>
+				   {{#navSchema}}
 					<li class="">
-						<a href="/profile">Profile</a>
+						<a href="#!{{{path}}}">{{label}}</a>
 					</li>
-					<li class="">
-						<a href="/about">About</a>
-					</li>
+				   {{/navSchema}}
 				</ul>
           </div>
      </div>

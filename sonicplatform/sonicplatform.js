@@ -5,7 +5,8 @@ steal(
 	   'sonicplatform/navigator',
 	   'sonicplatform/login',
 	   'sonicplatform/registration',
-	   function( Router, Navigator, Login, Registration){
+	   'sonicplatform/DashboardModule',
+	   function( Router, Navigator, Login, Registration, DashboardModule){
 	    var currentBaseView = 'home'
 	   
     	removeController = function (){
@@ -28,6 +29,12 @@ steal(
            	       });
            	       currentBaseView = 'userRegistration';
 	           break;
+	           case "userDashboard":
+	        	   DashboardModule = new DashboardModule("#userDashboard", {
+	           	            mostCurrentNocs:"go there"
+	           	       });
+	           	       currentBaseView = 'assetUploader';
+		       break;
 	         
 	         }
     	}

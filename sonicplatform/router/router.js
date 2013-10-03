@@ -54,6 +54,11 @@ steal('can',
                    this.element[0].loadController('registration');
                    can.route("/registration");
                break;
+               case '/myDashboard':
+                   this.element[0].removeController();
+                   this.element[0].loadController('userDashboard');
+                   can.route("/myDashboard");
+               break;
              }
               steal.dev.log("[Router] type route"); 
          },
