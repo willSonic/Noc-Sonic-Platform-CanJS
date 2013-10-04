@@ -2,10 +2,8 @@
 steal(
 	  'can',
       'can/view/mustache',	 
-      'static/js/jquery.min.js',
 	  'sonicplatform/models/user.js',
-	  'static/js/bootstrap.js',
-	   function( can, Registration) {
+	   function( can, User) {
 
 
 
@@ -26,9 +24,8 @@ steal(
              document.getElementById(this.element[0].id).appendChild(renderer);
     	},
     	
-        '.dashboardMenu click' :function(el, ev){
+        '.dashboardMenu a click' :function(el, ev){
              ev.preventDefault();
-	         ev.stopPropagation();
              $(this).tab('show');
         },
     	

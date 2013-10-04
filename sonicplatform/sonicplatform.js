@@ -1,13 +1,15 @@
 // Load all of the plugin dependencies
 
-steal(
+steal( 
 	   'sonicplatform/router',
 	   'sonicplatform/navigator',
 	   'sonicplatform/login',
 	   'sonicplatform/registration',
 	   'sonicplatform/DashboardModule',
+	   'jquery',
+	   'bootstrap',
 	   function( Router, Navigator, Login, Registration, DashboardModule){
-	    var currentBaseView = 'home'
+	    var currentBaseView = 'home';
 	   
     	removeController = function (){
 	        steal.dev.log("[Sonicplatform.js]---- removeController  currentBaseView =" + currentBaseView);
