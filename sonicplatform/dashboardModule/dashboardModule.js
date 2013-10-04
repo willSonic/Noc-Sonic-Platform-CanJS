@@ -1,9 +1,11 @@
 
-steal('can',
+steal(
+	  'can',
       'can/view/mustache',	 
-      'static/js/bootstrap.min.js',
-	  'sonicplatform/models/user.js', 
-	function( can, Registration) {
+      'static/js/jquery.min.js',
+	  'sonicplatform/models/user.js',
+	  'static/js/bootstrap.js',
+	   function( can, Registration) {
 
 
 
@@ -27,8 +29,7 @@ steal('can',
         '.dashboardMenu click' :function(el, ev){
              ev.preventDefault();
 	         ev.stopPropagation();
-             $(this).tabs('show');
-             
+             $(this).tab('show');
         },
     	
     	'button[type=submit] click' : function(el, ev){
