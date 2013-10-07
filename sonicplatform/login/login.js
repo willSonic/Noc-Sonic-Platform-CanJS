@@ -30,7 +30,8 @@ steal('can',
      */
     return can.Control.extend({
         defaults:{
-            loginLock: true
+            loginLock: true,
+            user:null
         },
      
         init: function(element, options) {
@@ -46,14 +47,23 @@ steal('can',
             ev.stopPropagation();
             if(!this.loginLock){
                 this.loginLock = true;
-                User.findOne({username:el[0].form.username.value, password:el[0].form.password.value}, this.userFound);
+                var self = this;
+                User.findOne({username:el[0].form.username.value, password:el[0].form.password.value},function(result){
+                	self.userFound(result);
+                });
             }
-             
-            return false;
         },
          
-        userFound : function(modelResult){
-            steal.dev.log('[Login Controler]--- loginResult ='+modelResult);
+        userFound : function(modelUser){
+        	this.options.user  = new User({id:modelUser._data.user._id,
+        								   firstname:modelUser._data.user.name.first,
+        								   lastname:modelUser._data.user.name.last,
+        								   username:modelUser._data.user.username,
+        								   email:modelUser._data.user.email,
+        								   sonicRole:modelUser._data.user.sonicRole,
+        								   loggedIn:true});
+        	this.options.userState.attr('loggedInUser', this.options.user);
+        	steal.dev.log('[Login Controler]--- this.options.userid ='+this.options.user.id);
              
         }
    });

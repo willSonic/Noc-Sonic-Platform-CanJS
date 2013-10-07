@@ -8,9 +8,10 @@ steal(
 	   'sonicplatform/DashboardModule',
 	   'jquery',
 	   'bootstrap',
+	   'can/observe',
 	   function( Router, Navigator, Login, Registration, DashboardModule){
 	    var currentBaseView = 'home';
-	   
+	    var userState = new can.Observe();
     	removeController = function (){
 	        steal.dev.log("[Sonicplatform.js]---- removeController  currentBaseView =" + currentBaseView);
 	        document.getElementById(currentBaseView).innerHTML='';
@@ -21,19 +22,19 @@ steal(
 	         switch(controller){
 	           case "login":
        	         Login = new Login("#userLogin", {
-           	            mostCurrentNocs:"go there"
+       	        	userState:userState
            	       });
            	       currentBaseView = 'userLogin';
 	           break;
 	           case "registration":
        	          Registration = new Registration("#userRegistration", {
-           	            mostCurrentNocs:"go there"
+       	        	userState:userState
            	       });
            	       currentBaseView = 'userRegistration';
 	           break;
 	           case "userDashboard":
 	        	   DashboardModule = new DashboardModule("#userDashboard", {
-	           	            mostCurrentNocs:"go there"
+	        		   userState:userState
 	           	       });
 	           	       currentBaseView = 'assetUploader';
 		       break;
@@ -50,7 +51,9 @@ steal(
     	
     	
         
-    	Router = new Router(window);
+    	Router = new Router(window, {
+    		userState:userState
+	       });
 });
       
       

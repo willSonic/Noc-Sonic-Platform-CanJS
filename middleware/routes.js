@@ -59,7 +59,6 @@ module.exports = function(app){
 	  req.session['sessionStart'] = Date.now();
 	  res.cookie('user_id',  req._passport.session.user, {expires: 0});
       res.send(200, {user:req.user});
-      res.redirect('/');
    });
    
    app.post('/uploadBeat', fileUploadSetUp, fileupload, platform.handleUpload);

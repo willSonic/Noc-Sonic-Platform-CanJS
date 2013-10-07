@@ -1,7 +1,9 @@
 
 steal('can',
+	  'can/observe',
       'can/control/route',
-	  function(can, route) {
+      'sonicplatform/models/user.js',
+	  function(can, route, User) {
 
 
 
@@ -39,7 +41,7 @@ steal('can',
 	
          init: function(element, options) {
               this.options.updateController = options['updateController'];
-              steal.dev.log("[Router] init this.element = "+this.element[0]);                 
+              steal.dev.log("[Router] init this.element = "+this.element[0]);      
     	 },
     	
         ":type route" : function(data) {
@@ -61,6 +63,11 @@ steal('can',
                break;
              }
               steal.dev.log("[Router] type route"); 
+         },
+
+         '{userState} loggedInUser': function(Construct, event, loggedInUser){
+        	 steal.dev.log("Router... userSTate");
+        	 
          },
          
         ":login route" : function(data) {

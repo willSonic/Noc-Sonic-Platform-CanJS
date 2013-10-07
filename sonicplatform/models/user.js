@@ -10,16 +10,25 @@ steal('can', function( can ) {
      *
      */
     return  can.Model({
+    	 attributes:{
+    		 id:"string",
+    		 loggedIn:false,
+    		 username:"username",
+    		 role:"string",
+    		 firstname:"string",
+    		 lastname:"string",
+    		 email:"string"
+    	 },
      
          findAll : function(params){
            return $.ajax({
              url: '/recipes.json',
              type: 'get',
-             dataType: 'json'})
+             dataType: 'json'});
          },
           
-         findOne : function(params, success){
-           return $.ajax({ url: '/login',type: 'POST',data:params, dataType: 'json',  success:success})
+         findOne : function(params){
+           return $.ajax({ url: '/login',type: 'POST',data:params, dataType: 'json'});
          },
           
          update : function(id, attrs ) {
@@ -35,7 +44,16 @@ steal('can', function( can ) {
          }
              
         },  {
-         
+            setId :function(id){
+            	steal.dev.log("User.Model-- setID id = "+id);
+            	this.attr('id', id);
+            	return id;
+            },
+
+            setUsername :function(username){
+            	this.attr('username',username);
+            	return username;
+            }
          
         });
 });
