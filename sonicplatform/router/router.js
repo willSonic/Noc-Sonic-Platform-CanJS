@@ -47,16 +47,19 @@ steal('can',
         ":type route" : function(data) {
              switch(data.type){
                case '/login':
+                   steal.dev.log("[Router] type ---  /login ---"); 
                    this.element[0].removeController();
                    this.element[0].loadController('login');
                    can.route("/login");
                break;
                case '/registration':
+                   steal.dev.log("[Router] type ---  /registration ---"); 
                    this.element[0].removeController();
                    this.element[0].loadController('registration');
                    can.route("/registration");
                break;
                case '/myDashboard':
+                   steal.dev.log("[Router] type ---  /myDashboard ---"); 
                    this.element[0].removeController();
                    this.element[0].loadController('userDashboard');
                    can.route("/myDashboard");
@@ -69,6 +72,10 @@ steal('can',
         	 steal.dev.log("Router... userSTate");
         	 
          },
+         
+         ":myDashboard route" : function(data) {
+               steal.dev.log("[Router] myDashboard route"); 
+          },
          
         ":login route" : function(data) {
               steal.dev.log("[Router] login route"); 

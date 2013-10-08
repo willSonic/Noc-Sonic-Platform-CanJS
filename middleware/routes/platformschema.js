@@ -32,6 +32,7 @@ module.exports = {
     userDashboard: function(req, res, next){
         User.findOne({'_id':req.user._id}, function (err, user) {
              if (err) { 
+            	  console.log("[platformschema]--- userDashboard  --- =ERR")
             	  next(err);
              }
              res.send(200, {user:user, beats:{ beat:{
@@ -42,8 +43,11 @@ module.exports = {
                                               } 
                             });
          });
-     }
-
+     },
+    // app.get('/logout'...)
+     logout: function (req, res){
+         res.redirect('/');
+    }
  };
 
 /*module.exports = {

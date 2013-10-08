@@ -14,19 +14,21 @@ var platform = require('./routes/platformschema');
  */
 function restrict(req, res, next) {
   if (req.user) {
+	  console.log("[routes.js]--restrict --- req.user PRESENT");
       next();
   } else {
-    res.redirect('/login');
+	  console.log("[routes.js]--restrict --- req.user NOT-PRESENT");
+      res.redirect('/login');
   }
 }
 
 function fileUploadSetUp(req, res, next) {
-	 //if(req.user) {
+	if(req.user) {
 		 req.files.file['updatePath']="moozungu";
 		 next();
- /*	 } else {
+ 	 } else {
  	    res.redirect('/login');
- 	 }*/
+ 	 }
 }
 
 /**

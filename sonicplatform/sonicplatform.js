@@ -21,22 +21,22 @@ steal(
 	         steal.dev.log("[Sonicplatform.js]---- loadController  controller =" + controller);
 	         switch(controller){
 	           case "login":
-       	         Login = new Login("#userLogin", {
-       	        	userState:userState
+       	            Login = new Login("#userLogin", {
+       	        	  userState:userState
            	       });
            	       currentBaseView = 'userLogin';
 	           break;
 	           case "registration":
-       	          Registration = new Registration("#userRegistration", {
-       	        	userState:userState
+       	            Registration = new Registration("#userRegistration", {
+       	        	    userState:userState
            	       });
            	       currentBaseView = 'userRegistration';
 	           break;
 	           case "userDashboard":
 	        	   DashboardModule = new DashboardModule("#userDashboard", {
-	        		   userState:userState
-	           	       });
-	           	       currentBaseView = 'assetUploader';
+	        		 userState:userState
+	           	   });
+	           	  currentBaseView = 'assetUploader';
 		       break;
 	         
 	         }
