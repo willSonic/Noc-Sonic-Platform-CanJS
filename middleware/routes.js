@@ -13,6 +13,7 @@ var platform = require('./routes/platformschema');
  * and can be used in any route that requires auth
  */
 function restrict(req, res, next) {
+	  console.log("[routes.js]--restrict --- req.user ATTEMPT");
   if (req.user) {
 	  console.log("[routes.js]--restrict --- req.user PRESENT");
       next();
@@ -51,26 +52,27 @@ module.exports = function(app){
     * Home Routes - Home page, about, contact, etc
     */
    
-   app.get('/login', platform.login);
+ //  app.get('/login', platform.login);
    // TODO: Figure out how to present failure messages to user
    app.post('/login',
    passport.authenticate('local', {
       failureRedirect: '/login'
    }),
    function (req, res) {
+	console.log("[routes.js]--post /loging ---req._passport.session.user._id ="+ req._passport.session.user._id );
 	  req.session['sessionStart'] = Date.now();
 	  res.cookie('user_id',  req._passport.session.user, {expires: 0});
       res.send(200, {user:req.user});
    });
+
+   app.use('/dashboard', restrict, platform.userDashboard);
    
    app.post('/uploadBeat', fileUploadSetUp, fileupload, platform.handleUpload);
-   //app.use('/uploadImage',  platform.handleUpload); 
-
-  // app.post('/uploadSong', {type:"song"}, platform.handelUpload); 
    
-  // app.post('/uploadBeat', {type:"beat"}, platform.handelUpload); 
    app.get('/platformschema',   platform.getPlatform);
-   app.get('/myDashboard', restrict, platform.userDashboard);
+   app.get('/about',   platform.getPlatform);
+   
+   
  /*  app.get('/logout', restrict, home.logout);
    app.get('/about', home.about);
    app.get('/about/tos', home.tos);

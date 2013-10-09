@@ -36,50 +36,69 @@ steal('can',
 	/* @prototype */
 	{
 	    defaults:{
-	       updateController:null,
+	       userState:null,
+	       updateController:null
 	    },
 	
          init: function(element, options) {
               this.options.updateController = options['updateController'];
-              steal.dev.log("[Router] init this.element = "+this.element[0]);      
+              this.options.userState  = options['userState'];
+              steal.dev.log("[Router] init this.element = "+this.element[0]);   
     	 },
-    	
-        ":type route" : function(data) {
+    	 
+         ":type route" : function(data) {
+            steal.dev.log("[Router] type ---(data.type---)  ="+data.type); 
              switch(data.type){
                case '/login':
                    steal.dev.log("[Router] type ---  /login ---"); 
                    this.element[0].removeController();
-                   this.element[0].loadController('login');
+                   this.element[0].loadController('login', this.options.userState);
                    can.route("/login");
                break;
                case '/registration':
                    steal.dev.log("[Router] type ---  /registration ---"); 
                    this.element[0].removeController();
-                   this.element[0].loadController('registration');
+                   this.element[0].loadController('registration', this.options.userState);
                    can.route("/registration");
                break;
-               case '/myDashboard':
-                   steal.dev.log("[Router] type ---  /myDashboard ---"); 
+               case '/dashboard':
+            	   if(this.options.userState.loggedInUser){
+                       this.element[0].removeController();
+                       this.element[0].loadController('userDashboard', this.options.userState);
+                      // steal.dev.log("[Router] type ---  /dashboard ---"); 
+                       can.route( "/dashboard");    
+            	   }else{ 
+            		   can.route.attr({route:"login", type : "/login" });  
+                       /*this.element[0].removeController();
+                       this.element[0].loadController('login', this.options.userState);
+                       can.route("/login");*/
+            	   }
+               break;
+               case '/about':
+                   steal.dev.log("[Router] type ---  /about ---"); 
                    this.element[0].removeController();
-                   this.element[0].loadController('userDashboard');
-                   can.route("/myDashboard");
+                   this.element[0].loadController('about', this.options.userState);
+                   can.route("/about");
                break;
              }
               steal.dev.log("[Router] type route"); 
          },
 
+         "login route" : function(data) {
+             steal.dev.log("[Router]login route ---"); 
+             can.route({type: "/login", route:":type"});
+          },
+          
+          
          '{userState} loggedInUser': function(Construct, event, loggedInUser){
         	 steal.dev.log("Router... userSTate");
         	 
          },
          
-         ":myDashboard route" : function(data) {
-               steal.dev.log("[Router] myDashboard route"); 
+         ":dashboard route" : function(data) {
+               steal.dev.log("[Router] dashboard route"); 
           },
          
-        ":login route" : function(data) {
-              steal.dev.log("[Router] login route"); 
-         },
          "sonic-collection/:id route" : function(data) {
               steal.dev.log("[Router] type sonic-collection/:id"); 
          },

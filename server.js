@@ -52,7 +52,9 @@ app.configure(function(){
    app.use(function(req, res, next) {
       var current = req.path.split('/');
       res.locals.current = '/' + current[1];
+      console.log("[Server.js]--- res.locals.current ="+res.locals.current);
       res.locals.url = 'http://' + req.get('host') + req.url;
+      console.log("[Server.js]--- res.locals.url ="+res.locals.url);
       next();
    });
    app.use(express.bodyParser());

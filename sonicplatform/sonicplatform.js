@@ -17,13 +17,13 @@ steal(
 	        document.getElementById(currentBaseView).innerHTML='';
     	}
     	
-    	loadController = function(controller){
+    	loadController = function(controller, userState){
 	         steal.dev.log("[Sonicplatform.js]---- loadController  controller =" + controller);
 	         switch(controller){
 	           case "login":
        	            Login = new Login("#userLogin", {
-       	        	  userState:userState
-           	       });
+       	            	userState:userState
+       	            });
            	       currentBaseView = 'userLogin';
 	           break;
 	           case "registration":

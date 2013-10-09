@@ -16,7 +16,8 @@ module.exports = {
     
     
     getPlatform : function(req, res) {
-         res.send( {"links":[{"label":"Home","key":"front","path":"/"},{"label":"Sonic Dashboard","key":"userDashboard","path":"/myDashboard"},{"label":"About","key":"about","path":"/about"}]});
+  	     console.log("[platformschema.js]--- getPlatform------");
+         res.send( {"links":[{"label":"Home","key":"front","path":"#!"},{"label":"Sonic Dashboard","key":"userDashboard","path":"#!/dashboard"},{"label":"About","key":"about","path":"#!/about"}]});
     },
 
    // app.post('/uploadBeat...)
@@ -26,13 +27,15 @@ module.exports = {
 
     // app.get('/login'...)
     login: function(req, res) {
+    	  console.log("[platformschema.js]--- login------");
         res.send(200, {user:req.user});
     },
     
     userDashboard: function(req, res, next){
+  	  console.log("[platformschema.js]--- userDashboard------");
         User.findOne({'_id':req.user._id}, function (err, user) {
              if (err) { 
-            	  console.log("[platformschema]--- userDashboard  --- =ERR")
+            	  console.log("[platformschema]--- userDashboard  --- =ERR");
             	  next(err);
              }
              res.send(200, {user:user, beats:{ beat:{
@@ -44,10 +47,18 @@ module.exports = {
                             });
          });
      },
+     
+     //aap.get('/about'...)
+     about:function(req, res){
+     	  console.log("[platformschema.js]--- userDashboard------");
+          res.redirect('/');
+     },
     // app.get('/logout'...)
      logout: function (req, res){
          res.redirect('/');
     }
+     
+     
  };
 
 /*module.exports = {

@@ -30,12 +30,14 @@ steal('can',
      */
     return can.Control.extend({
         defaults:{
+        	userState:null,
             loginLock: true,
             user:null
         },
      
         init: function(element, options) {
              steal.dev.log("[Login] from this.element = "+this.element[0]);
+             this.options.userState  = options['userState'];
              var el = this;
              var renderer = can.view('//sonicplatform/login/templates/login.mustache', {});
              document.getElementById(this.element[0].id).appendChild(renderer);
