@@ -17,7 +17,7 @@ module.exports = {
     
     getPlatform : function(req, res) {
   	     console.log("[platformschema.js]--- getPlatform------");
-         res.send( {"links":[{"label":"Home","key":"front","path":"#!"},{"label":"Sonic Dashboard","key":"userDashboard","path":"#!/dashboard"},{"label":"About","key":"about","path":"#!/about"}]});
+         res.send( {"links":[{"label":"Home","key":"front","path":"#!"},{"label":"Sonic Dashboard","key":"userDashboard","path":"#!dashboard"},{"label":"About","key":"about","path":"#!about"}]});
     },
 
    // app.post('/uploadBeat...)
